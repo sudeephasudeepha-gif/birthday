@@ -109,7 +109,7 @@
 </head>
 <body>
   <h1>🎉 Happy<br>Birthday<br>Kiran 🎂</h1>
-  <div id="cake">🎂</div>
+  <div id="cake"></div>
   <button class="btn" onclick="enableAudio()">Click for a Surprise</button>
 
   <audio id="birthdayAudio" loop>
@@ -191,10 +191,10 @@
       musicBtn.addEventListener('click', () => {
         if (audio.paused) {
           audio.play();
-          musicBtn.innerHTML = '🔊 Music';
+          musicBtn.innerHTML = '';
         } else {
           audio.pause();
-          musicBtn.innerHTML = '🔇 Music';
+          musicBtn.innerHTML = '';
         }
       });
 
