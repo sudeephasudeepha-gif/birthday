@@ -1,210 +1,94 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Happy Birthday Maams !</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --primary: #ff6ec4;
-      --secondary: #7873f5;
-      --accent: #fdd835;
-    }
+<script>
+  function enableAudio() {
+    const audio = document.getElementById('birthdayAudio');
+    audio.volume = 0.9;
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
-    body {
-      font-family: 'Dancing Script', cursive;
-      background: linear-gradient(135deg, var(--primary), var(--secondary));
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      min-height: 100vh;
-      color: white;
-      text-align: center;
-      overflow: hidden;
-    }
-
-    h1 {
-      font-size: 4rem;
-      color: var(--accent);
-      text-shadow:
-        0 0 5px var(--accent),
-        0 0 10px var(--accent),
-        0 0 20px var(--accent),
-        0 0 30px var(--primary);
-      animation: float 3s ease-in-out infinite, glow 2s ease-in-out infinite;
-      margin: 40px 0 3rem 0;
-      font-weight: bolder;
-      line-height: 1.4;
-    }
-
-    .btn {
-      background: linear-gradient(135deg, #ff6b6b, #ff1493);
-      color: white;
-      padding: 0.8rem 2rem;
-      font-size: 1.2rem;
-      border: none;
-      border-radius: 30px;
-      cursor: pointer;
-      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-      transition: transform 0.3s ease;
-      animation: pulse 2s infinite;
-    }
-
-    .btn:hover {
-      transform: scale(1.05);
-    }
-
-    #cake {
-      font-size: 4rem;
-      margin-bottom: 1rem;
-      cursor: pointer;
-      animation: float 4s ease-in-out infinite;
-    }
-
-    @keyframes float {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-10px); }
-    }
-
-    @keyframes glow {
-      0%, 100% {
-        text-shadow: 
-          0 0 10px var(--accent),
-          0 0 20px var(--accent),
-          0 0 40px var(--primary);
-      }
-      50% {
-        text-shadow:
-          0 0 5px var(--accent),
-          0 0 10px var(--accent),
-          0 0 20px var(--primary);
-      }
-    }
-
-    @keyframes pulse {
-      0% { transform: scale(1); }
-      50% { transform: scale(1.05); }
-      100% { transform: scale(1); }
-    }
-
-    @keyframes sparkleFade {
-      0% { opacity: 1; transform: scale(1); }
-      100% { opacity: 0; transform: scale(2); }
-    }
-
-    @keyframes floatHeart {
-      0% { transform: translateY(0); }
-      50% { transform: translateY(-50px); }
-      100% { transform: translateY(0); }
-    }
-  </style>
-</head>
-<body>
-  <h1>🎉 Happy<br>Birthday<br>Kiran 🎂</h1>
-  <div id="cake"></div>
-  <button class="btn" onclick="enableAudio()">Click for a Surprise</button>
-
-  <audio id="birthdayAudio" loop>
-    <source src="pp.mp3" type="audio/mpeg">
-    Your browser does not support the audio element.
-  </audio>
-
-  <script>
-    // ✅ Global function so button can access it
-    function enableAudio() {
-      const audio = document.getElementById('birthdayAudio');
-      audio.volume = 0.9;
-
-      audio.play()
-        .then(() => {
-          console.log("🎵 Music started!");
-          createHearts();
-          document.querySelector('.btn').style.display = 'none';
-          showMusicButton(audio);
-        })
-        .catch(err => {
-          console.log("⚠️ Audio play failed:", err);
-          alert("Please click once to enable sound 🎵");
-        });
-    }
-
-    // ❤️ Floating hearts
-    function createHearts() {
-      for (let i = 0; i < 20; i++) {
-        const heart = document.createElement('div');
-        heart.textContent = '🖤';
-        heart.style.position = 'fixed';
-        heart.style.left = Math.random() * 100 + 'vw';
-        heart.style.top = Math.random() * 100 + 'vh';
-        heart.style.fontSize = Math.random() * 24 + 16 + 'px';
-        heart.style.opacity = 0.8;
-        heart.style.animation = `floatHeart ${2 + Math.random() * 4}s ease-in-out infinite`;
-        heart.style.zIndex = 999;
-        document.body.appendChild(heart);
-        setTimeout(() => heart.remove(), 10000);
-      }
-    }
-
-    // ✨ Sparkle effect
-    function sparkleEffect() {
-      for (let i = 0; i < 15; i++) {
-        const sparkle = document.createElement('div');
-        sparkle.textContent = '✨';
-        sparkle.style.position = 'fixed';
-        sparkle.style.left = (window.innerWidth / 2) + (Math.random() * 100 - 50) + 'px';
-        sparkle.style.top = (window.innerHeight / 2) + (Math.random() * 100 - 50) + 'px';
-        sparkle.style.opacity = 0.8;
-        sparkle.style.fontSize = '20px';
-        sparkle.style.animation = 'sparkleFade 1s ease-out';
-        sparkle.style.zIndex = 1000;
-        document.body.appendChild(sparkle);
-        setTimeout(() => sparkle.remove(), 1000);
-      }
-    }
-
-    // 🎵 Music toggle button
-    function showMusicButton(audio) {
-      const musicBtn = document.createElement('button');
-      musicBtn.innerHTML = '🔊 Music';
-      Object.assign(musicBtn.style, {
-        position: 'fixed',
-        bottom: '20px',
-        right: '20px',
-        zIndex: '1000',
-        padding: '8px 15px',
-        borderRadius: '20px',
-        border: 'none',
-        cursor: 'pointer',
-        backgroundColor: 'rgba(255,255,255,0.3)',
-        color: 'white',
-        fontFamily: 'Arial, sans-serif'
+    audio.play()
+      .then(() => {
+        console.log("🎵 Music started!");
+        startInfiniteHearts(); // 👈 continuous hearts start here
+        document.querySelector('.btn').style.display = 'none';
+        showMusicButton(audio);
+      })
+      .catch(err => {
+        console.log("⚠️ Audio play failed:", err);
+        alert("Please click once to enable sound 🎵");
       });
+  }
 
-      musicBtn.addEventListener('click', () => {
-        if (audio.paused) {
-          audio.play();
-          musicBtn.innerHTML = 'Music';
-        } else {
-          audio.pause();
-          musicBtn.innerHTML = 'Music';
-        }
-      });
-
-      document.body.appendChild(musicBtn);
+  // ❤️ Create one batch of hearts
+  function createHearts() {
+    for (let i = 0; i < 10; i++) {
+      const heart = document.createElement('div');
+      heart.textContent = '💚';
+      heart.style.position = 'fixed';
+      heart.style.left = Math.random() * 100 + 'vw';
+      heart.style.top = Math.random() * 100 + 'vh';
+      heart.style.fontSize = Math.random() * 24 + 16 + 'px';
+      heart.style.opacity = 0.8;
+      heart.style.animation = `floatHeart ${2 + Math.random() * 4}s ease-in-out infinite`;
+      heart.style.zIndex = 999;
+      document.body.appendChild(heart);
+      setTimeout(() => heart.remove(), 10000);
     }
+  }
 
-    // 🎂 Add sparkles when clicking the cake
-    document.addEventListener('DOMContentLoaded', () => {
-      document.getElementById('cake').addEventListener('click', sparkleEffect);
+  // ♾️ Keep creating hearts forever (every 1 second)
+  function startInfiniteHearts() {
+    createHearts(); // first batch immediately
+    setInterval(createHearts, 1000); // keep spawning new ones
+  }
+
+  // ✨ Sparkle effect when clicking the cake
+  function sparkleEffect() {
+    for (let i = 0; i < 15; i++) {
+      const sparkle = document.createElement('div');
+      sparkle.textContent = '✨';
+      sparkle.style.position = 'fixed';
+      sparkle.style.left = (window.innerWidth / 2) + (Math.random() * 100 - 50) + 'px';
+      sparkle.style.top = (window.innerHeight / 2) + (Math.random() * 100 - 50) + 'px';
+      sparkle.style.opacity = 0.8;
+      sparkle.style.fontSize = '20px';
+      sparkle.style.animation = 'sparkleFade 1s ease-out';
+      sparkle.style.zIndex = 1000;
+      document.body.appendChild(sparkle);
+      setTimeout(() => sparkle.remove(), 1000);
+    }
+  }
+
+  // 🎵 Music toggle button
+  function showMusicButton(audio) {
+    const musicBtn = document.createElement('button');
+    musicBtn.innerHTML = '🔊 Pause';
+    Object.assign(musicBtn.style, {
+      position: 'fixed',
+      bottom: '20px',
+      right: '20px',
+      zIndex: '1000',
+      padding: '8px 15px',
+      borderRadius: '20px',
+      border: 'none',
+      cursor: 'pointer',
+      backgroundColor: 'rgba(255,255,255,0.3)',
+      color: 'white',
+      fontFamily: 'Arial, sans-serif'
     });
-  </script>
-</body>
-</html>
+
+    musicBtn.addEventListener('click', () => {
+      if (audio.paused) {
+        audio.play();
+        musicBtn.innerHTML = '🔊 Pause';
+      } else {
+        audio.pause();
+        musicBtn.innerHTML = '🔈 Play';
+      }
+    });
+
+    document.body.appendChild(musicBtn);
+  }
+
+  // 🎂 Sparkles on cake click
+  document.addEventListener('DOMContentLoaded', () => {
+    document.getElementById('cake').addEventListener('click', sparkleEffect);
+  });
+</script>
