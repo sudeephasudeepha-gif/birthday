@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Happy Birthday Maams ! </title>
+  <title>Happy Birthday Maam!</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
   <style>
@@ -26,10 +26,9 @@
       align-items: center;
       justify-content: center;
       min-height: 100vh;
-      padding: 20px;
       color: white;
-      overflow: hidden;
       text-align: center;
+      overflow: hidden;
     }
 
     h1 {
@@ -106,129 +105,106 @@
       50% { transform: translateY(-50px); }
       100% { transform: translateY(0); }
     }
-
-    @media (min-width: 768px) {
-      h1 {
-        font-size: 4rem;
-      }
-
-      .btn {
-        font-size: 1.5rem;
-        padding: 1rem 2.5rem;
-      }
-
-      #cake {
-        font-size: 5rem;
-      }
-
-      body {
-        padding: 40px;
-      }
-    }
   </style>
 </head>
 <body>
-
   <h1>🎉 Happy<br>Birthday<br>Kiran 🎂</h1>
-  <div id="cake"></div>
-  <button class="btn" onclick=enableAudio()>Click for a Surprise</button>
+  <div id="cake">🎂</div>
+  <button class="btn" onclick="enableAudio()">Click for a Surprise</button>
 
-<audio id="birthdayAudio" loop>
-  <source src="pp.mp3" type="audio/mpeg">
-  Your browser does not support the audio element.
-</audio>
+  <audio id="birthdayAudio" loop>
+    <source src="pp.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+  </audio>
 
+  <script>
+    // ✅ Global function so button can access it
+    function enableAudio() {
+      const audio = document.getElementById('birthdayAudio');
+      audio.volume = 0.9;
 
-<script>
-  // ✅ Make enableAudio GLOBAL so onclick works
-  function enableAudio() {
-    const audio = document.getElementById('birthdayAudio');
-    audio.volume = 0.9;
-
-    // Try to play the audio
-    audio.play().then(() => {
-      console.log("🎵 Music started");
-      createHearts(); // Add hearts effect
-      document.querySelector('.btn').style.display = 'none'; // Hide button after click
-      showMusicButton(audio);
-    }).catch(err => {
-      console.log("⚠️ Audio play failed:", err);
-      alert("Please click once to enable sound 🎵");
-    });
-  }
-
-  // ❤️ Floating hearts animation
-  function createHearts() {
-    for (let i = 0; i < 20; i++) {
-      const heart = document.createElement('div');
-      heart.textContent = '🧡';
-      heart.style.position = 'fixed';
-      heart.style.left = Math.random() * 100 + 'vw';
-      heart.style.top = Math.random() * 100 + 'vh';
-      heart.style.fontSize = Math.random() * 24 + 16 + 'px';
-      heart.style.opacity = 0.8;
-      heart.style.animation = `floatHeart ${2 + Math.random() * 4}s ease-in-out infinite`;
-      heart.style.zIndex = 999;
-      document.body.appendChild(heart);
-      setTimeout(() => heart.remove(), 10000);
+      audio.play()
+        .then(() => {
+          console.log("🎵 Music started!");
+          createHearts();
+          document.querySelector('.btn').style.display = 'none';
+          showMusicButton(audio);
+        })
+        .catch(err => {
+          console.log("⚠️ Audio play failed:", err);
+          alert("Please click once to enable sound 🎵");
+        });
     }
-  }
 
-  // ✨ Sparkle effect for cake
-  function sparkleEffect() {
-    for (let i = 0; i < 15; i++) {
-      const sparkle = document.createElement('div');
-      sparkle.textContent = '✨';
-      sparkle.style.position = 'fixed';
-      sparkle.style.left = (window.innerWidth / 2) + (Math.random() * 100 - 50) + 'px';
-      sparkle.style.top = (window.innerHeight / 2) + (Math.random() * 100 - 50) + 'px';
-      sparkle.style.opacity = 0.8;
-      sparkle.style.fontSize = '20px';
-      sparkle.style.animation = 'sparkleFade 1s ease-out';
-      sparkle.style.zIndex = 1000;
-      document.body.appendChild(sparkle);
-      setTimeout(() => sparkle.remove(), 1000);
-    }
-  }
-
-  // 🔊 Add Music toggle button after song starts
-  function showMusicButton(audio) {
-    const musicBtn = document.createElement('button');
-    musicBtn.innerHTML = '🔊 Music';
-    Object.assign(musicBtn.style, {
-      position: 'fixed',
-      bottom: '20px',
-      right: '20px',
-      zIndex: '1000',
-      padding: '8px 15px',
-      borderRadius: '20px',
-      border: 'none',
-      cursor: 'pointer',
-      backgroundColor: 'rgba(255,255,255,0.3)',
-      color: 'white',
-      fontFamily: 'Arial, sans-serif'
-    });
-
-    musicBtn.addEventListener('click', () => {
-      if (audio.paused) {
-        audio.play();
-        musicBtn.innerHTML = '🔊 Music';
-      } else {
-        audio.pause();
-        musicBtn.innerHTML = '🔇 Music';
+    // ❤️ Floating hearts
+    function createHearts() {
+      for (let i = 0; i < 20; i++) {
+        const heart = document.createElement('div');
+        heart.textContent = '🧡';
+        heart.style.position = 'fixed';
+        heart.style.left = Math.random() * 100 + 'vw';
+        heart.style.top = Math.random() * 100 + 'vh';
+        heart.style.fontSize = Math.random() * 24 + 16 + 'px';
+        heart.style.opacity = 0.8;
+        heart.style.animation = `floatHeart ${2 + Math.random() * 4}s ease-in-out infinite`;
+        heart.style.zIndex = 999;
+        document.body.appendChild(heart);
+        setTimeout(() => heart.remove(), 10000);
       }
+    }
+
+    // ✨ Sparkle effect
+    function sparkleEffect() {
+      for (let i = 0; i < 15; i++) {
+        const sparkle = document.createElement('div');
+        sparkle.textContent = '✨';
+        sparkle.style.position = 'fixed';
+        sparkle.style.left = (window.innerWidth / 2) + (Math.random() * 100 - 50) + 'px';
+        sparkle.style.top = (window.innerHeight / 2) + (Math.random() * 100 - 50) + 'px';
+        sparkle.style.opacity = 0.8;
+        sparkle.style.fontSize = '20px';
+        sparkle.style.animation = 'sparkleFade 1s ease-out';
+        sparkle.style.zIndex = 1000;
+        document.body.appendChild(sparkle);
+        setTimeout(() => sparkle.remove(), 1000);
+      }
+    }
+
+    // 🎵 Music toggle button
+    function showMusicButton(audio) {
+      const musicBtn = document.createElement('button');
+      musicBtn.innerHTML = '🔊 Music';
+      Object.assign(musicBtn.style, {
+        position: 'fixed',
+        bottom: '20px',
+        right: '20px',
+        zIndex: '1000',
+        padding: '8px 15px',
+        borderRadius: '20px',
+        border: 'none',
+        cursor: 'pointer',
+        backgroundColor: 'rgba(255,255,255,0.3)',
+        color: 'white',
+        fontFamily: 'Arial, sans-serif'
+      });
+
+      musicBtn.addEventListener('click', () => {
+        if (audio.paused) {
+          audio.play();
+          musicBtn.innerHTML = '🔊 Music';
+        } else {
+          audio.pause();
+          musicBtn.innerHTML = '🔇 Music';
+        }
+      });
+
+      document.body.appendChild(musicBtn);
+    }
+
+    // 🎂 Add sparkles when clicking the cake
+    document.addEventListener('DOMContentLoaded', () => {
+      document.getElementById('cake').addEventListener('click', sparkleEffect);
     });
-
-    document.body.appendChild(musicBtn);
-  }
-
-  // 🎂 Cake sparkle
-  document.addEventListener('DOMContentLoaded', () => {
-    document.getElementById('cake').addEventListener('click', sparkleEffect);
-  });
-</script>
-
-
-    
+  </script>
 </body>
 </html>
