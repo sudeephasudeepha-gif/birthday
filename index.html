@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Happy Birthday Maams!</title>
+  <title>Happy Birthday Chilli!</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
   <style>
@@ -129,13 +129,13 @@
 </head>
 <body>
 
-  <h1>🎉 Happy<br>Birthday<br>Kiran 🎂</h1>
+  <h1>🎉 Happy<br>Birthday<br>Sarah 🎂</h1>
   <div id="cake"></div>
   <button class="btn" onclick=enableAudio()>Click for a Surprise</button>
 
  <audio id="birthdayAudio" loop>
-  <source src="pp.mp3" type="audio/mpeg">
-  <source src="pp.ogg" type="audio/ogg">
+  <source src="birth_greeting].mp3" type="audio/mpeg">
+  <source src="birth_greeting].ogg" type="audio/ogg">
   Your browser does not support the audio element.
 </audio>
 
@@ -187,13 +187,13 @@
     function createHearts() {
       for (let i = 0; i < 20; i++) {
         const heart = document.createElement('div');
-        heart.textContent = '💛';
+        heart.textContent = '❤️';
         heart.style.position = 'fixed';
         heart.style.left = Math.random() * 100 + 'vw';
         heart.style.top = Math.random() * 100 + 'vh';
         heart.style.fontSize = Math.random() * 24 + 16 + 'px';
         heart.style.opacity = 0.8;
-        heart.style.animation ='floatHeart ${2 + Math.random() * 4}s ease-in-out infinite';
+        heart.style.animation = `floatHeart ${2 + Math.random() * 4}s ease-in-out infinite`;
         heart.style.zIndex = 999;
         document.body.appendChild(heart);
         setTimeout(() => heart.remove(), 10000);
