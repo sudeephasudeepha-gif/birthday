@@ -128,7 +128,7 @@
   </style>
 </head>
 <body>
-<img src="photo.jpg">
+<img src="photo.jpg" width="30" height="20">
   <h1>🎉 Happy<br>Birthday<br>Sarah 🎂</h1>
   <div id="cake"></div>
   <button class="btn" onclick=enableAudio()>Click for a Surprise</button>
@@ -141,10 +141,9 @@
 
   <script>
     document.addEventListener('DOMContentLoaded', function () {
-      const audio = document.getElementById('birthdayAudio');
-      audio.volume = 0.9;
-
       function enableAudio() {
+        const audio = document.getElementById('birthdayAudio');
+      audio.volume = 0.9;
         audio.play().catch(e => console.log("Audio play requires user interaction first"));
         document.removeEventListener('click', enableAudio);
         document.removeEventListener('click', enableAudio);
