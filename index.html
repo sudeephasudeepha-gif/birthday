@@ -140,9 +140,9 @@
 
   <script>
     document.addEventListener('DOMContentLoaded', function () {
-      function enableAudio() {
-        const audio = document.getElementById('birthdayAudio');
+      const audio = document.getElementById('birthdayAudio');
       audio.volume = 0.9;
+      function enableAudio() {
         audio.play().catch(e => console.log("Audio play requires user interaction first"));
         document.removeEventListener('click', enableAudio);
         document.removeEventListener('click', enableAudio);
