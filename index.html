@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+  <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -139,14 +139,12 @@
 </audio>
 
   <script>
-      const audio = document.getElementById('birthdayAudio');
-      audio.volume = 0.9;
-    document.addEventListener('DOMContentLoaded', function () {
-      function enableAudio() {
-        audio.play().catch(e => console.log("Audio play requires user interaction first"));
-        document.removeEventListener('click', enableAudio);
-        document.removeEventListener('click', enableAudio);
-      }
+const audio = document.getElementById('birthdayAudio');
+
+function enableAudio() {
+    audio.volume = 0.9;
+    audio.play().catch(e => console.log("Audio play error:", e));
+}
        const surpriseBtn = document.querySelector('.btn');
        surpriseBtn.addEventListener('click', createHearts);
 
